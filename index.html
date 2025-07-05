@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BB 2025</title>
+  <style>
+    :root {
+      --green: #d7d700e4;
+      --green-hover: #0202cb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: #121212;
+      color: black;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
+    
+    .perfil{
+      width: 60px;
+      border-radius: 50%;
+      border: 2px yellow solid;
+    }
+    .perfil img{
+      border-color: red;
+    }
+    .menu-toggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--green);
+      border: none;
+      border-radius: 4px;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      margin: 5px auto;
+    }
+
+    aside {
+      background: #181818;
+      width: 250px;
+      height: 100vh;
+      position: fixed;
+      left: -250px;
+      top: 0;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    aside.show { left: 0; }
+
+    aside h2 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    aside ul { list-style: none; padding: 0; }
+    aside li { margin-bottom: 15px; cursor: pointer; color: #bbb; }
+    aside li:hover { color: var(--green); }
+    aside .btn { margin-top: 30px; }
+    li :hover{
+      color: green;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+    .overlay.show { display: block; }
+
+    main {
+      padding: 80px 20px 40px 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .player {
+      background: #181818;
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+      position: relative;
+    }
+
+    .cover-wrapper { position: relative; }
+    .cover {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .logo-overlay {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fff;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Banco_do_Brasil_logo.svg/512px-Banco_do_Brasil_logo.svg.png');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid var(--green);
+    }
+
+    .title { font-size: 1rem; margin-bottom: 5px;
+    color: white;}
+    .author { font-size: 0.8rem; color: white; margin-bottom: 15px; }
+
+    .progress {
+      width: 100%;
+      height: 5px;
+      background: #333;
+      border-radius: 5px;
+      margin: 15px 0;
+      position: relative;
+    }
+
+    .progress-filled {
+      height: 100%;
+      background: var(--green);
+      width: 0%;
+      border-radius: 5px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn {
+      background: var(--green);
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+    h3{
+      text-align: center;
+      padding-top: 15px;
+    }
+    p{
+      font-size: 12px;
+      color: yellow;
+    }
+    .btn:hover { background: var(--green-hover); }
+    .btn svg { fill: #fff; width: 20px; height: 20px; }
+
+    @media (max-width: 768px) {
+      main { grid-template-columns: 1fr; }
+    }
+    .tudo{
+      padding-left: 53%;
+      text-align: center;
+    }
+    .motivacao{
+      width: 360px;
+    }
+    h2, h3{
+      color: white;
+    }
+    h1{
+      color: white;
+      font-family: Times New Roman;
+      text-align: center;
+    }
+    .mot:hover{
+      color: red;
+      font-size: 30px;
+    }
+    .dest{
+      color: yellow;
+    }
+    .dest:hover{
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+<h3><b>Gerenciador de Estudos</b><br><b>Banco do Brasil</b></h3>
+  <button class="menu-toggle" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="overlay" onclick="toggleMenu()"></div>
+  <aside id="sidebar">
+    <br>
+    <br>
+    <br>
+        <img class="perfil" src = 'logobb1.jpg'>
+    <img class="perfil" src = 'logobb2.jpg'>
+    <img onclick="playAll()" class="perfil" src =
+    'tudo4.jpg'>
+    <p onclick="playAll()" class="tudo"><b>Reproduzir</b><br><b>Tudo</b></p>
+    
+    <br>
+    <h2 onclick="cronograma()">🗓️ Cronograma</h2>
+    <h2 onclick="videoAula()">️📚 Video Aulas</h2>
+    <h2>🎧 Resumo em Áudio</h2>
+    <ul>
+      <li onclick="playByIndex(0)">🟡Sistema Financeiro Nacional</li>
+      <li onclick="playByIndex(1)">🟡Produtos Bancários</li>
+      <li onclick="playByIndex(2)">🟡Mercado de Câmbio e Capitais</li>
+
+    </ul>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><p><i>Desenvolvido por Arnaldo
+    S. Lima</i></p>
+  </aside>
+<h1 class="mot">Decisões, Decidem</h1>
+<h1 class="dest"><b><i>Destinos</i></b>.</h1>
+  <main>
+    <div class="player">
+      <div class="cover-wrapper">
+        <img onclick="playAll()" class="cover" src="logobb1.jpg" alt="Capa Podcast">
+        <div class="logo-overlay"></div>
+      </div>
+      <div class="title">Sistema Financeiro Nacional</div>
+      <div class="author">Arnaldo S. Lima</div>
+      <div class="progress"><div class="progress-filled"></div></div>
+      <div class="controls">
+        <button class="btn play-btn" data-state="play">
+          <svg viewBox="0 0 24 24" class="icon">
+            <polygon points="5,3 19,12 5,21" />
+          </svg>
+        </button>
+        <button class="btn repeat-btn">🔁</button>
+      </div>
+      
+      <audio>
+        <source src="https://dl.dropbox.com/scl/fi/gq3zlwz15gupf3tyz7nus/The-National-Financial-System-of-Brazil.wav?rlkey=wcoiwnsugs42qggws0cny71fi&st=i6di8j3n&dl=0" type="audio/wav">
+      </audio>
+    </div>
+
+    <div class="player">
+      <div class="cover-wrapper">
+        <img class="cover" src="logobb1.jpg">
+        <div class="logo-overlay"></div>
+      </div>
+      <div class="title">Produtos Bancários</div>
+      <div class="author">Arnaldo S. Lima</div>
+      <div class="progress"><div class="progress-filled"></div></div>
+      <div class="controls">
+        <button class="btn play-btn" data-state="play">
+          <svg viewBox="0 0 24 24" class="icon">
+            <polygon points="5,3 19,12 5,21" />
+          </svg>
+        </button>
+        <button class="btn repeat-btn">🔁</button>
+      </div>
+      <audio>
+        <source src="https://dl.dropbox.com/scl/fi/7ecj0qmscisvlb75rdeo8/Produtos-Banc-rios-e-Previd-ncia_-Uma-An-lise-Abrangente.wav?rlkey=21gq1bz270pxueo9wr5iwwwel&st=uw7y0mkr&dl=0" type="audio/wav">
+      </audio>
+    </div>
+
+    <div class="player">
+      <div class="cover-wrapper">
+        <img class="cover" src="logobb1.jpg" alt="Capa Podcast">
+        <div class="logo-overlay"></div>
+      </div>
+      <div class="title">Mercado de Câmbio e Capitais</div>
+      <div class="author">Arnaldo S. Lima</div>
+      <div class="progress"><div class="progress-filled"></div></div>
+      <div class="controls">
+        <button class="btn play-btn" data-state="play">
+          <svg viewBox="0 0 24 24" class="icon">
+            <polygon points="5,3 19,12 5,21" />
+          </svg>
+        </button>
+        <button class="btn repeat-btn">🔁</button>
+      </div>
+      <audio>
+        <source src="https://dl.dropbox.com/scl/fi/jpiz1a9i4x73acgftzmhm/Capital-and-Foreign-Exchange-Markets.wav?rlkey=slc3o00k4m6o0bpi8szoyi590&st=ikfea0qa&dl=0" type="audio/wav">
+      </audio>
+    </div>
+      
+  </main>
+
+  <script>
+    const players = document.querySelectorAll('.player');
+    let currentIndex = 0;
+
+    players.forEach((player, index) => {
+      const audio = player.querySelector('audio');
+      const playBtn = player.querySelector('.play-btn');
+      const icon = playBtn.querySelector('polygon');
+      const repeatBtn = player.querySelector('.repeat-btn');
+      const progress = player.querySelector('.progress-filled');
+
+      let repeat = false;
+
+      playBtn.onclick = () => {
+        if (audio.paused) {
+          pauseAll();
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      };
+
+      audio.onplay = () => { icon.setAttribute('points', '6,4 6,20 10,20 10,4 14,4 14,20 18,20 18,4'); };
+      audio.onpause = () => { icon.setAttribute('points', '5,3 19,12 5,21'); };
+      audio.ontimeupdate = () => { progress.style.width = (audio.currentTime / audio.duration) * 100 + '%'; };
+
+      repeatBtn.onclick = () => {
+        repeat = !repeat;
+        audio.loop = repeat;
+        repeatBtn.style.background = repeat ? 'var(--green-hover)' : 'var(--green)';
+      };
+
+      audio.onended = () => {
+        if (!repeat) playNext();
+      };
+    });
+
+    function pauseAll() { players.forEach(p => p.querySelector('audio').pause()); }
+    function playNext() {
+      if (currentIndex < players.length - 1) {
+        currentIndex++;
+        pauseAll();
+        players[currentIndex].querySelector('audio').play();
+      }
+    }
+    function playAll() {
+      currentIndex = 0;
+      pauseAll();
+      players[0].querySelector('audio').play();
+    }
+    function playByIndex(i) {
+      currentIndex = i;
+      pauseAll();
+      players[i].querySelector('audio').play();
+      toggleMenu();
+    }
+
+    function toggleMenu() {
+      document.getElementById('sidebar').classList.toggle('show');
+      document.querySelector('.overlay').classList.toggle('show');
+    }
+    
+    function selecionar(elemento) {
+  document.querySelectorAll('li').forEach(el => el.classList.remove('playAll'));
+  elemento.classList.add('playAll');
+}
+function cronograma() {
+  window.open('https://atec7.github.io/Banco-do-Brasil-BB-/', '_blank');
+}
+
+function videoAula() {
+  alert('⏲️EM DESENVOLVIMENTO...')
+}
+  </script>
+</body>
+      </html>
+      
