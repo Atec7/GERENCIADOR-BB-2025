@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="img/ico.jpg" type="image/x-icon">
   <title>BB 2025</title>
   <style>
     :root {
@@ -226,6 +227,7 @@
       <li onclick="playByIndex(0)">🟡Sistema Financeiro Nacional</li>
       <li onclick="playByIndex(1)">🟡Produtos Bancários</li>
       <li onclick="playByIndex(2)">🟡Mercado de Câmbio e Capitais</li>
+      <li onclick="playByIndex(3)">🟡Sistema de Pagamentos</li>
 
     </ul>
 <br>
@@ -282,7 +284,6 @@
         <source src="https://dl.dropbox.com/scl/fi/7ecj0qmscisvlb75rdeo8/Produtos-Banc-rios-e-Previd-ncia_-Uma-An-lise-Abrangente.wav?rlkey=21gq1bz270pxueo9wr5iwwwel&st=uw7y0mkr&dl=0" type="audio/wav">
       </audio>
     </div>
-
     <div class="player">
       <div class="cover-wrapper">
         <img class="cover" src="logobb1.jpg" alt="Capa Podcast">
@@ -303,7 +304,28 @@
         <source src="https://dl.dropbox.com/scl/fi/jpiz1a9i4x73acgftzmhm/Capital-and-Foreign-Exchange-Markets.wav?rlkey=slc3o00k4m6o0bpi8szoyi590&st=ikfea0qa&dl=0" type="audio/wav">
       </audio>
     </div>
+
+<div class="player">
+      <div class="cover-wrapper">
+        <img onclick="playAll()" class="cover" src="logobb1.jpg" alt="Capa Podcast">
+        <div class="logo-overlay"></div>
+      </div>
+      <div class="title">Sistema de Pagamentos</div>
+      <div class="author">Arnaldo S. Lima</div>
+      <div class="progress"><div class="progress-filled"></div></div>
+      <div class="controls">
+        <button class="btn play-btn" data-state="play">
+          <svg viewBox="0 0 24 24" class="icon">
+            <polygon points="5,3 19,12 5,21" />
+          </svg>
+        </button>
+        <button class="btn repeat-btn">🔁</button>
+      </div>
       
+      <audio>
+        <source src="https://dl.dropbox.com/scl/fi/1kjx6f2dke0xpgfqf5j42/Brazilian-Payment-System_-Mechanics-and-Operations.wav?rlkey=osrgmjxcxapjl3wqreay8684f&st=gzxbk2w2&dl=0" type="audio/wav">
+      </audio>
+    </div>
   </main>
 
   <script>
@@ -381,5 +403,4 @@ function videoAula() {
 }
   </script>
 </body>
-      </html>
-      
+</html>
